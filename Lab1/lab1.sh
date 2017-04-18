@@ -6,16 +6,11 @@
 read -p "Please enter a number: " NUM
 
 # Only allow -, +, integer or decimal for input
-# Valid if valid number is entered after 1st invalid prompt.
-# Example: if 'aa' is entered then 'aa' entered again, the 
-# screen display  will be an invalid "Your number is less 
-# than 5"
-if [[ ! $NUM =~ ^[+-]?[0-9]*[.]?[0-9]*$ ]]
-then 
+while [[ ! $NUM =~ ^[+-]?[0-9]*[.]?[0-9]*$ ]]
+do
   echo "Please enter a valid integer"
   read NUM
-  exit
-fi
+done
 
 #Takes out leading zeros and changes +0 to +
 NUM=$(echo $NUM | sed -e 's/^0*//')

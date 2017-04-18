@@ -1,28 +1,22 @@
 #!/bin/bash
-# This checks to see if a number is larger than 5
+# Prompt the user for a number, ensure its a number and
+# check to see if it's and EVEN number.
 
-echo "Please enter a number: " 
-read num
+read -p "Please enter a number: " NUM
 
-#Takes out leading zeros
-num=$(echo $num| sed -e 's/^0*//')
-num=$(echo $num| sed -e 's/^[+]0*/+/')
-num=$(echo $num| sed -e 's/^[-]0*/-/')
+# Only allow -, +, integer for input
+while [[ ! $NUM =~ ^[+-]?[0-9]*$ ]]
+do
+  echo "Please enter a valid integer"
+  read NUM
+done
 
-#Deals with anything entered other than - + or integer
-#Not working correctly
-if [[ ! $num =~ [-+[:digit:]] ]]
+
+REMAINDER=$(( NUM % 2 ))
+if [[ $REMAINDER -eq 0 ]]
 then
-  echo "Please enter proper integer"
-  read num
-fi
-
-remainder=$(( num % 2 ))
-if [[ $remainder -eq 0 ]]
-then 
   echo "Your number is even"
 else
   echo "Your number is odd"
-
 fi
 
