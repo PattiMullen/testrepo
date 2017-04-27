@@ -11,6 +11,8 @@ do
   read NUM
 done
 
+#Takes out leading zeros
+NUM=$(echo $NUM | sed -e 's/^0*//')
 
 REMAINDER=$(( NUM % 2 ))
 if [[ $REMAINDER -eq 0 ]]
